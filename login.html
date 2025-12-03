@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<style>
+body {
+    background-color: bisque;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 350px;
+    background: white;
+    margin: 80px auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: red;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #888;
+    font-size: 16px;
+}
+
+button {
+    background-color: tomato;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: red;
+}
+</style>
+
+<script>
+function validateLogin() {
+    const email = document.forms["loginForm"]["email"].value;
+    const pwd = document.forms["loginForm"]["pwd"].value;
+
+    // Email validation
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    if (!emailPattern.test(email)) {
+        alert("Enter a valid Email!");
+        return false;
+    }
+
+    // Password validation
+    if (pwd.length < 6) {
+        alert("Password must be at least 6 characters!");
+        return false;
+    }
+    return true;
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Login</h1>
+
+    <form name="loginForm" action="loginR" onsubmit="return validateLogin()">
+
+        <label>Email:</label><br>
+        <input type="text" name="email" required><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="pwd" required><br>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+</body>
+</html>

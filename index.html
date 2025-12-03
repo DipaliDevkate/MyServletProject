@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registration Form</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial;
+        background: #e3f2fd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-container {
+        background: white;
+        padding: 30px;
+        width: 350px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #bbb;
+    }
+
+    .gender-option {
+        margin-bottom: 15px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #2196F3;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #0b7dda;
+    }
+</style>
+
+<script>
+function validateForm() {
+    const name = document.forms["regForm"]["uname"].value;
+    const email = document.forms["regForm"]["email"].value;
+    const phone = document.forms["regForm"]["phone"].value;
+    const address = document.forms["regForm"]["address"].value;
+    const gender = document.forms["regForm"]["gender"].value;
+    const password = document.forms["regForm"]["pwd"].value;
+
+    // Name validation
+    if (name.length <1) {
+        alert("Name must be at least 3 characters!");
+        return false;
+    }
+
+    // Email validation
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    if (!emailPattern.test(email)) {
+        alert("Enter a valid Email Address!");
+        return false;
+    }
+
+    // Phone validation
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(phone)) {
+        alert("Enter a valid 10-digit Phone Number!");
+        return false;
+    }
+
+    // Address validation
+    if (address.trim() === "") {
+        alert("Address cannot be empty!");
+        return false;
+    }
+
+    // Gender validation
+    if (gender === "") {
+        alert("Please select gender!");
+        return false;
+    }
+
+    // Password validation
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters!");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="form-container">
+    <h2>Register</h2>
+
+    <form name="regForm" action="register" onsubmit="return validateForm()">
+
+        <label>UserName:</label>
+        <input type="text" name="uname" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Phone No:</label>
+        <input type="text" name="phone" required>
+
+        <label>Address:</label>
+        <input type="text" name="address" required>
+
+        <label>Gender:</label>
+        <div class="gender-option">
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+        </div>
+
+        <label>Password:</label>
+        <input type="password" name="pwd" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
